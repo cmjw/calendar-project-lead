@@ -1,12 +1,38 @@
-<!DOCTYPE html>
-
-
-
+<!DOCTYPE HTML>
+<html>
 <head>
-    <title></title>
-</head>>
+    <style>
+        #myIframe {
+            height: 600px;
+            width:100%;
+            border: 2px solid #999;
+        }
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #myButton {
+            margin:20px;
+        }
+        .col1 {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="col1">
+        <iframe id="myIframe" src="https://outlook.office365.com/owa/calendar/e34be3b900a24aa5a96bca1d76a5049e@austin.utexas.edu/e9ed3fe053d44af989d7adaf01028f2a2068161914461311871/calendar.html"></iframe>
+    </div>
+    <div class="col1">
+        <button id="myButton" onclick="triggerClickInsideIframe()">Button outside</button>
+    </div>
+</div>
 
-<body> 
-    <iframe src="https://outlook.office365.com/owa/calendar/e34be3b900a24aa5a96bca1d76a5049e@austin.utexas.edu/e9ed3fe053d44af989d7adaf01028f2a2068161914461311871/calendar.html" 
-    name="frame" title="Sport Clubs Calendar" scrolling="no" width="100%" height="700px;" frameborder="0"></iframe>
+<script>
+    function triggerClickInsideIframe() {
+        document.getElementById("myIframe").contentWindow.document.getElementById("splitbuttonprimary").click();
+    }
+</script>
 </body>
+</html>
