@@ -1,40 +1,50 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
     <style>
-        #myIframe {
-            height: 600px;
-            width:100%;
-            border: 2px solid #999;
+        #calendarframe {
+            width: 100%;
+            height: 800px; 
+            border: none;
         }
-        .main {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        #myButton {
-            margin:20px;
-        }
-        .col1 {
-            flex: 1;
+
+        /* mobile devices */
+        @media only screen and (max-width: 600px) {
+            #calendarframe {
+                height: 400px; 
+            }
         }
     </style>
 </head>
 <body>
-<div class="main">
-    <div class="col1">
-        <iframe id="myIframe" src="https://outlook.office365.com/owa/calendar/e34be3b900a24aa5a96bca1d76a5049e@austin.utexas.edu/e9ed3fe053d44af989d7adaf01028f2a2068161914461311871/calendar.html"></iframe>
-    </div>
-    <div class="col1">
-        <button id="myButton" onclick="triggerClickInsideIframe()">Button outside</button>
-    </div>
-</div>
+    <iframe 
+        id="calendarframe" 
+        src="https://outlook.office365.com/owa/calendar/e34be3b900a24aa5a96bca1d76a5049e@austin.utexas.edu/e9ed3fe053d44af989d7adaf01028f2a2068161914461311871/calendar.html" 
+        onload="collapsePane()">
+    </iframe>
 
-<script>
-    function triggerClickInsideIframe() {
-        document.getElementById("myIframe").contentWindow.document.getElementById("ms-Icon root-89 css-191 ms-Button-icon yokTl icon-161").click();
-    }
-</script>
+    <script>
+        function collapsePane() {
+            console.log("Call collapsePane");
+            var iframe = document.getElementById('calendarframe');
+
+            // upon load
+            var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            var collapseButton = iframeDocument.querySelector('button[title="Collapse agenda pane"]');
+            if (collapseButton) {
+                console.log("Collape agenda pane from collapsePane");
+                collapseButton.click();
+            } else {
+                console.log("Element does not exist");
+            }
+            iframe.onload = function() {
+                
+            };
+        }
+    </script>
 </body>
 </html>
-
-
