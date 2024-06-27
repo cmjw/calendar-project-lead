@@ -31,19 +31,21 @@
         function collapsePane() {
             console.log("Call collapsePane");
             var iframe = document.getElementById('calendarframe');
-
-            // upon load
-            var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-            var collapseButton = iframeDocument.querySelector('button[title="Collapse agenda pane"]');
-            if (collapseButton) {
-                console.log("Collape agenda pane from collapsePane");
-                collapseButton.click();
-            } else {
-                console.log("Element does not exist");
+            if (!iframe) {
+                console.log("iframe does not exist");
             }
-            iframe.onload = function() {
-                
-            };
+
+            //iframe.onload = function() {
+                // upon load
+                var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                var collapseButton = iframeDocument.querySelector('button[title="Collapse agenda pane"]');
+                if (collapseButton) {
+                    console.log("Collape agenda pane from collapsePane");
+                    collapseButton.click();
+                } else {
+                    console.log("Element does not exist");
+                }   
+            //};
         }
     </script>
 </body>
